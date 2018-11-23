@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django_forms_bootstrap',
     'accounts',
     'products',
+    'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
+                'cart.contexts.items_in_cart'
             ],
         },
     },
@@ -122,3 +126,8 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
